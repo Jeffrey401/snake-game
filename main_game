@@ -1,0 +1,33 @@
+var Snake = function(x, y) {
+    this.x = x;
+    this.y = y;
+};
+var SNAKE_MOVE_SPEED = 2;
+
+Snake.prototype.draw = function() {
+    fill(36, 189, 46);
+    rect(this.x, this.y, 25, 25);
+};
+
+Snake.prototype.up = function() {
+    this.y-= SNAKE_MOVE_SPEED;
+};
+
+Snake.prototype.down = function() {
+    this.y+= SNAKE_MOVE_SPEED;
+};
+
+var snake = new Snake(200, 200);
+
+draw = function() {
+    if (keyPressed) {
+        if (keyCode === UP) {
+            snake.up();
+        }
+        else if (keyCode === DOWN) {
+            snake.down();
+        }
+    }
+    background(255, 255, 255);
+    snake.draw();
+};
