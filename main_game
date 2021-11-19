@@ -28,12 +28,12 @@ var drawBitmoji= function(bodyX,bodyY,bitHeight){
     text('J G',bodyX-(bitHeight/150)*22,bodyY+(bitHeight/150)*53); //initial
 }; //draws bitmoji
 
+var SNAKE_MOVE_SPEED = 2; //speed that the snake moves at
+
 var Snake = function(x, y) {
     this.x = x;
     this.y = y;
-};
-
-var SNAKE_MOVE_SPEED = 2;
+}; //snake constructor
 
 Snake.prototype.draw = function() {
     this.x = constrain(this.x, 13, 386);
@@ -59,6 +59,21 @@ Snake.prototype.right = function() {
 Snake.prototype.left = function() {
     this.x-= SNAKE_MOVE_SPEED;
 };
+
+var Apple = function(x, y) {
+    this.x = x;
+    this.y = y;
+};
+
+Apple.prototype.draw = function() {
+    
+}; 
+
+var apples = [];
+
+for (var i = 0; i < 30; i++) {
+    apples.push(new Apple(round(random(0, 400)), round(random(0, 400))));
+}
 
 var snake = new Snake(200, 200);
 
