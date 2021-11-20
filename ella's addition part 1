@@ -319,7 +319,7 @@ var firstScene= function(){
     textSize(18);
     text("Click Below to start:",106, 100);
     textSize(18);
-    text("Collect apples as many as apples as you can without going out of bounds", 46, 198, 312, 294);
+    text("Collect as many as apples as you can without going out of bounds", 46, 198, 312, 294);
     btn1.draw();
     textSize(17);
     fill(242, 233, 242);
