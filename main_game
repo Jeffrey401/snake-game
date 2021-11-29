@@ -1,33 +1,3 @@
-var drawBitmoji= function(bodyX,bodyY,bitHeight){
-    noStroke();
-    fill(246, 198, 175); //skin color
-    ellipse(bodyX+(bitHeight/150),bodyY+(bitHeight/150),(bitHeight/150)*76,(bitHeight /150)*100); //head
-    arc(bodyX-(bitHeight/150)*35,bodyY-(bitHeight/150)*1,(bitHeight/150)*16,(bitHeight /150)*23,-270,-90); //left ear
-    arc(bodyX+(bitHeight/150)*36,bodyY-(bitHeight/150)*1,(bitHeight/150)*16,(bitHeight /150)*23,(bitHeight/150)*-90,(bitHeight/150)*90); //right ear
-    fill(51, 29, 1); //eye color
-    ellipse(bodyX-(bitHeight/150)*16,bodyY-(bitHeight/150)*9,(bitHeight/150)*7,(bitHeight/150)*7); //left eye
-    ellipse(bodyX+(bitHeight/150)*15,bodyY-(bitHeight/150)*9,(bitHeight/150)*7,(bitHeight/150)*7); //right eye
-    fill(235, 181, 184); //lip color
-    arc(bodyX+(bitHeight/150)*1,bodyY+(bitHeight/150)*29,(bitHeight/150)*28,(bitHeight/150)*12,(bitHeight/150)*0,(bitHeight/150)*360); //lips
-    stroke(0, 0, 0);
-    strokeWeight(1);
-    line(bodyX+(bitHeight/150)*13,bodyY+(bitHeight/150)*28,bodyX-(bitHeight/150)*11,bodyY+(bitHeight/150)*28); //lip line
-    fill(246, 198, 175); //skin color
-    bezier(bodyX+(bitHeight/150),bodyY-(bitHeight/150)*1,bodyX+(bitHeight/150)*25,bodyY+(bitHeight/150)*21,bodyX-(bitHeight/150)*10,bodyY+(bitHeight/150)*17,bodyX+(bitHeight/150),bodyY+(bitHeight/150)*16); //nose
-        fill(11, 41, 161); //hat color
-    arc(bodyX+(bitHeight/150)*1,bodyY-(bitHeight/150)*17,(bitHeight/150)*71,(bitHeight/150)*72,180,360); //hat
-    strokeWeight(4);
-    line(bodyX-(bitHeight/150)*30,bodyY+(bitHeight/150)*33,bodyX-(bitHeight/150)*33,bodyY+(bitHeight/150)*44); //braid
-    line(bodyX+(bitHeight/150)*31,bodyY+(bitHeight/150)*32,bodyX+(bitHeight/150)*35,bodyY+(bitHeight/150)*43); //braid
-    noStroke();
-    fill(0, 0, 0); //shirt color
-    quad(bodyX-(bitHeight/150)*51,bodyY+(bitHeight/150)*95,bodyX+(bitHeight/150)*61,bodyY+(bitHeight/150)*95,bodyX+(bitHeight/150)*33,bodyY+(bitHeight/150)*47,bodyX-(bitHeight/150)*29,bodyY+(bitHeight/150)*47); //shirt
-    strokeWeight((bitHeight/150)*4);
-    fill(255, 255, 255); // initial color
-    textSize((bitHeight/150)*30); //initial size
-    text('J G',bodyX-(bitHeight/150)*22,bodyY+(bitHeight/150)*53); //initial
-}; //draws bitmoji
-
 var SNAKE_MOVE_SPEED = 2; //speed that the snake moves at
 
 var Snake = function(x, y) {
@@ -66,7 +36,9 @@ var Apple = function(x, y) {
 };
 
 Apple.prototype.draw = function() {
-    
+    rectMode(CENTER);
+    fill(240, 14, 14);
+    rect(this.x, this.y, 20, 20);
 }; 
 
 var apples = [];
@@ -93,5 +65,6 @@ draw = function() {
         }
     }
     background(255, 255, 255);
+    apples[0].draw();
     snake.draw();
 };
