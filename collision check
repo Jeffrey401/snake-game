@@ -1,0 +1,199 @@
+var score = 20;
+
+var N= 11;
+
+var rowHeight = height / N;
+
+var SNAKE_MOVE_SPEED = 20; //speed that the snake moves at
+
+frameRate(N);
+
+var currentScene=1;
+
+                              ///////BUTTON CLASS//////////   
+
+var Button = function(config) {
+    this.x = config.x || 0;
+    this.y = config.y || 0;
+    this.width = config.width || 150;
+    this.height = config.height || 50;
+    this.label = config.label || "Click";
+    this.onClick = config.onClick || function() {};
+};
+
+Button.prototype.draw = function() {
+    fill(21, 166, 74);
+    rect(this.x, this.y, this.width, this.height, 5);
+    fill(17, 18, 16);
+    textSize(19);
+    textAlign(LEFT, TOP);
+    text(this.label, this.x + 10, this.y + this.height/4);
+};
+
+Button.prototype.isMouseInside = function() {
+    return mouseX > this.x &&
+           mouseX < (this.x + this.width) &&
+           mouseY > this.y &&
+           mouseY < (this.y + this.height);
+};
+
+Button.prototype.handleMouseClick = function() {
+    if (this.isMouseInside()) {
+        this.onClick();
+    }
+};
+
+var btn1 = new Button({
+    x: 113,
+    y: 139,
+    label: "START!",
+    onClick: function() {
+        currentScene=2;
+    }
+});
+
+mouseClicked = function() {
+    btn1.handleMouseClick();
+};
+
+                                  /////APPLE//////
+
+var Apple = function(x, y) {
+    this.x = x;
+    this.y = y;
+};
+
+Apple.prototype.draw = function() {
+    rectMode(CENTER);
+    fill(240, 14, 14);
+    rect(this.x, this.y, 20, 20);
+}; 
+
+var apples = [];
+
+for (var i = 0; i < 30; i++) {
+    apples.push(new Apple(round(random(0, 400)), round(random(0, 400))));
+}
+
+                                ////////SNAKE//////////
+                                
+var fullSnake = [];
+
+var Snake = function(x, y) {
+    this.x = x;
+    this.y = y;
+}; //snake constructor
+
+var snakeBody = function(){
+    var row = []; // row index of each body part
+    var col = []; // column index of each body part
+    var img = []; // index of image for each body part
+    var direction; // current direction of snake movement
+    var nextDirection; // direction in the next frame
+
+    var score; // number of apples this snake has eaten
+
+    var init = function() {
+        // start with a brand new snake
+        row = [];
+        col = [];
+        img = [];
+    };
+};
+
+Snake.prototype.draw = function() {
+    this.x = constrain(this.x, 13, 386);
+    this.y = constrain(this.y, 12, 385);
+    rectMode(CENTER);
+    fill(36, 189, 46);
+    rect(this.x, this.y, 35, 35);
+};
+
+Snake.prototype.up = function() {
+    this.y-= N;
+    
+};
+
+Snake.prototype.down = function() {
+    this.y+= N;
+};
+
+Snake.prototype.right = function() {
+    this.x+= N;
+};
+
+Snake.prototype.left = function() {
+    this.x-= N;
+};
+
+Snake.prototype.checkForApple = function(apple) {
+    if ((apple.x >= this.x - 10 && apple.x <= (this.x + 10)) &&
+        (apple.y >= this.y - 10 && apple.y <= (this.y + 10))) {
+        var x = 0;
+        apple.y = -400;
+        score--;
+        x+= 1;
+        draw = function() {
+            apples[x].draw();
+        };
+    }
+};
+
+                             //////DRAW+VISUALS///////
+
+
+
+var drawGrid = function() {
+    stroke(46, 46, 46);
+    for (var i = 0; i < N; i += 1) {
+        var x = i / N * height;
+        line(x, 0, x, height);
+        line(0, x, height, x);
+    }
+};
+
+var snake = new Snake(200, 200);
+
+var firstScene= function(){
+    background(89, 102, 91);
+    textSize(66);
+    fill(57, 82, 43);
+    text("SNAKE", 80, 32);
+    fill(31, 48, 20);
+    text("SNAKE", 86, 29);
+    fill(111, 181, 58);
+    textSize(18);
+    text("Click Below to start:",106, 100);
+    textSize(18);
+    text("Collect as many as apples as you can without going out of bounds", 46, 198, 312, 294);
+    btn1.draw();
+    textSize(17);
+    fill(242, 233, 242);
+    text("Ella Glantz and Jeffrey Gutierrez", 68, 380);
+
+};
+
+draw = function() {
+        if (keyPressed) {
+        if (keyCode === UP) {
+            snake.up();
+        }
+        else if (keyCode === DOWN) {
+            snake.down();
+        }
+        else if (keyCode === RIGHT) {
+            snake.right();
+        }
+        else if (keyCode === LEFT) {
+            snake.left();
+        }
+    }
+    background(255, 255, 255);
+    apples[0].draw();
+    snake.draw();
+    drawGrid();
+    
+    for (var i = 0; i < apples.length; i++) {
+        snake.checkForApple(apples[0]);
+    }
+};
