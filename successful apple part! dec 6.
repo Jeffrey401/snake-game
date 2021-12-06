@@ -1,0 +1,365 @@
+//Jeffrey Bitmoji
+var drawBitmojiJeffrey= function(bodyX,bodyY,bitHeight){
+    noStroke();
+    fill(246, 198, 175); //skin color
+    ellipse(bodyX+(bitHeight/150),bodyY+(bitHeight/150),(bitHeight/150)*76,(bitHeight /150)*100); //head
+    arc(bodyX-(bitHeight/150)*35,bodyY-(bitHeight/150)*1,(bitHeight/150)*16,(bitHeight /150)*23,-270,-90); //left ear
+    arc(bodyX+(bitHeight/150)*36,bodyY-(bitHeight/150)*1,(bitHeight/150)*16,(bitHeight /150)*23,(bitHeight/150)*-90,(bitHeight/150)*90); //right ear
+    fill(51, 29, 1); //eye color
+    ellipse(bodyX-(bitHeight/150)*16,bodyY-(bitHeight/150)*9,(bitHeight/150)*7,(bitHeight/150)*7); //left eye
+    ellipse(bodyX+(bitHeight/150)*15,bodyY-(bitHeight/150)*9,(bitHeight/150)*7,(bitHeight/150)*7); //right eye
+    fill(235, 181, 184); //lip color
+    arc(bodyX+(bitHeight/150)*1,bodyY+(bitHeight/150)*29,(bitHeight/150)*28,(bitHeight/150)*12,(bitHeight/150)*0,(bitHeight/150)*360); //lips
+    stroke(0, 0, 0);
+    strokeWeight(1);
+    line(bodyX+(bitHeight/150)*13,bodyY+(bitHeight/150)*28,bodyX-(bitHeight/150)*11,bodyY+(bitHeight/150)*28); //lip line
+    fill(246, 198, 175); //skin color
+    bezier(bodyX+(bitHeight/150),bodyY-(bitHeight/150)*1,bodyX+(bitHeight/150)*25,bodyY+(bitHeight/150)*21,bodyX-(bitHeight/150)*10,bodyY+(bitHeight/150)*17,bodyX+(bitHeight/150),bodyY+(bitHeight/150)*16); //nose
+        fill(11, 41, 161); //hat color
+    arc(bodyX+(bitHeight/150)*1,bodyY-(bitHeight/150)*17,(bitHeight/150)*71,(bitHeight/150)*72,180,360); //hat
+    strokeWeight(4);
+    line(bodyX-(bitHeight/150)*30,bodyY+(bitHeight/150)*33,bodyX-(bitHeight/150)*33,bodyY+(bitHeight/150)*44); //braid
+    line(bodyX+(bitHeight/150)*31,bodyY+(bitHeight/150)*32,bodyX+(bitHeight/150)*35,bodyY+(bitHeight/150)*43); //braid
+    noStroke();
+    fill(0, 0, 0); //shirt color
+    quad(bodyX-(bitHeight/150)*51,bodyY+(bitHeight/150)*95,bodyX+(bitHeight/150)*61,bodyY+(bitHeight/150)*95,bodyX+(bitHeight/150)*33,bodyY+(bitHeight/150)*47,bodyX-(bitHeight/150)*29,bodyY+(bitHeight/150)*47); //shirt
+    strokeWeight((bitHeight/150)*4);
+    fill(255, 255, 255); // initial color
+    textSize((bitHeight/150)*30); //initial size
+    text('J G',bodyX-(bitHeight/150)*22,bodyY+(bitHeight/150)*53); //initial
+};
+//Ella Bitmoji
+var drawHair = function(bitmojiX, bitmojiY, h){
+    noStroke();
+    fill(111, 78, 55);
+    ellipse((h/100)*(bitmojiX+20),(h/100)*(bitmojiY),(h/100)*(90),(h/100)*(110));//hair shape
+    ellipse((h/100)*(bitmojiX-30),(h/100)*(bitmojiY),(h/100)*(90),(h/100)*(110));//hair shape
+    ellipse((h/100)*(bitmojiX-30),(h/100)*(bitmojiY+70),(h/100)*(90),(h/100)*(110));//hair shape
+    ellipse((h/100)*(bitmojiX+20),(h/100)*(bitmojiY+70),(h/100)*(90),(h/100)*(110));//hair shape
+    ellipse((h/100)*(bitmojiX-1),(h/100)*(bitmojiY-53),(h/100)*(117),(h/100)*(31));//hair shape
+
+};
+var drawHead = function(bitmojiX, bitmojiY,h){
+    noStroke();
+    fill(230, 196, 163);//neck
+    rect((h/100)*(bitmojiX-17),(h/100)*(bitmojiY+50),(h/100)*(38),(h/100)*(35));//neck
+    fill(255, 223, 201);
+    ellipse((h/100)*(bitmojiX),(h/100)*(bitmojiY),(h/100)*(90),(h/100)*(110));//head     shape
+    arc((h/100)*(bitmojiX-20), (h/100)*(bitmojiY+47), (h/100)*(70), (h/100)*(55), 0, 36);//chin shape
+    arc((h/100)*(bitmojiX-24), (h/100)*(bitmojiY+47), (h/100)*(70), (h/100)*(55),0,36);//chin shape
+    arc((h/100)*(bitmojiX-9), (h/100)*(bitmojiY+27), (h/100)*(70), (h/100)*(83), 0, 37);//chin shape
+    ellipse((h/100)*(bitmojiX+11),(h/100)*(bitmojiY+47),(h/100)*(17),(h/100)*(23));
+};
+var drawShirt = function(bitmojiX, bitmojiY,h){
+    fill(119, 133, 135);//shirt
+    rect((h/100)*(bitmojiX-70),(h/100)*(bitmojiY+83),(h/100)*(152),(h/100)*(88            ));//shirt
+    fill(252, 141, 195);
+    rect((h/100)*(bitmojiX-47),(h/100)*(bitmojiY+120),(h/100)*(4),(h/100)*(23));
+    rect((h/100)*(bitmojiX-47),(h/100)*(bitmojiY+120),(h/100)*(24),(h/100)*(4));
+    rect((h/100)*(bitmojiX-47),(h/100)*(bitmojiY+130),(h/100)*(18),(h/100)*(4));
+    rect((h/100)*(bitmojiX-47),(h/100)*(bitmojiY+142),(h/100)*(23),(h/100)*(4));//lett     er E, first initial
+    rect((h/100)*(bitmojiX+17),(h/100)*(bitmojiY+119),(h/100)*(4),(h/100)*(26));
+    rect((h/100)*(bitmojiX+18),(h/100)*(bitmojiY+119),(h/100)*(24),(h/100)*(4));
+    rect((h/100)*(bitmojiX+18),(h/100)*(bitmojiY+141),(h/100)*(24),(h/100)*(4));
+    rect((h/100)*(bitmojiX+38),(h/100)*(bitmojiY+132),(h/100)*(4),(h/100)*(13));
+    rect((h/100)*(bitmojiX+30),(h/100)*(bitmojiY+131),(h/100)*(11),(h/100)*(4));//lett     er G, last initial
+};
+var drawFace = function(bitmojiX, bitmojiY,h){
+    fill(71, 64, 46);
+    arc((h/100)*(bitmojiX-2), (h/100)*(bitmojiY-15), (h/100)*(76), (h/100)*(24), 23, 39);//left eyebrow
+    arc((h/100)*(bitmojiX-43),(h/100)*(bitmojiY-15),(h/100)*(76), (h/100)*(19), 23, 39);//left eyebrow
+    strokeWeight(1);
+    stroke(13, 4, 4);
+    fill(245, 237, 245);
+    ellipse((h/100)*(bitmojiX+18),(h/100)*(bitmojiY),(h/100)*(14),(h/100)*(10));//righ     t white part of eye
+    ellipse((h/100)*(bitmojiX-21),(h/100)*(bitmojiY-1),(h/100)*(14),(h/100)*(10           ));//left white part of eye
+    noStroke();
+    fill(80, 105, 93);
+    strokeWeight(1);
+    ellipse((h/100)*(bitmojiX-20),(h/100)*(bitmojiY),(h/100)*(11),(h/100)*(6));//left     eye
+    ellipse((h/100)*(bitmojiX+18),(h/100)*(bitmojiY+1),(h/100)*(10),(h/100)*(6            ));//right eye
+    noStroke();
+    fill(3, 4, 5);
+    ellipse((h/100)*(bitmojiX-20),(h/100)*(bitmojiY),(h/100)*(3),(h/100)*(4));//right     pupil
+    ellipse((h/100)*(bitmojiX+17),(h/100)*(bitmojiY),(h/100)*(3),(h/100)*(4));//left p     upil
+    stroke(0, 0, 0);//outline
+    fill(255, 223, 201);//nose
+    bezier((h/100)*(bitmojiX-1),(h/100)*(bitmojiY),(h/100)*(bitmojiX+17),(h/100           )*(bitmojiY+32),(h/100)*(bitmojiX-1),(h/100)*(bitmojiY+26),(h/100)*(bitmojiX    -1     ),(h/100)*(bitmojiY+19));//nose
+    stroke(196, 43, 135);//lip color
+    fill(255, 255, 255);
+    arc((h/100)*(bitmojiX+1),(h/100)*(bitmojiY+30),(h/100)*(30),(h/100)*(17),0,164);//mouth
+    fill(0, 0, 0);
+    line((h/100)*(bitmojiX-15),(h/100)*(bitmojiY+30),(h/100)*(bitmojiX+14),(h/100         )*(bitmojiY+30));//upper lip
+};
+var drawExternal = function(bitmojiX, bitmojiY,h){
+    noStroke();
+    fill(255, 223, 201);
+    ellipse((h/100)*(bitmojiX-47),(h/100)*(bitmojiY+9),(h/100)*(9),(h/100)*(17            ));//left ear
+    ellipse((h/100)*(bitmojiX+46),(h/100)*(bitmojiY+9),(h/100)*(9),(h/100)*(17            ));//right ear
+    fill(230, 219, 18);
+    rect((h/100)*(bitmojiX-48),(h/100)*(bitmojiY+16),(h/100)*(2),(h/100)*(8),(h/100       )*(21));//left earring
+    rect((h/100)*(bitmojiX+46),(h/100)*(bitmojiY+16),(h/100)*(2),(h/100)*(10),(h/100      )*(21));//right earring
+    fill(211,188,141);
+    ellipse((h/100)*(bitmojiX-17),(h/100)*(bitmojiY+30),(h/100)*(2),(h/100)*(9            ));//left dimple
+    ellipse((h/100)*(bitmojiX+20),(h/100)*(bitmojiY+30),(h/100)*(2),(h/100)*(9            ));//right dimple
+};
+var drawNonBody = function(bitmojiX, bitmojiY,h){
+    noStroke();
+    fill(230, 196, 163);
+    arc((h/102)*(bitmojiX+1),(h/100)*(bitmojiY+81),(h/100)*(50),(h/100)*(27),0,170);//circle neck line
+    stroke(238, 255, 0);
+    fill(119, 133, 135);
+    arc((h/100)*(bitmojiX+2),(h/100)*(bitmojiY+85),(h/100)*(51),(h/100)*(49),0,183);//necklace
+    noStroke();
+    fill(255, 242, 0);
+    rect((h/100)*(bitmojiX),(h/100)*(bitmojiY+108),(h/100)*(3),(h/100)*(9));//mezzuzah pendant
+    fill(38, 27, 38);
+    rect((h/100)*(bitmojiX-30),(h/100)*(bitmojiY-55),(h/100)*(58),(h/100)*(7));
+    rect((h/100)*(bitmojiX-21),(h/100)*(bitmojiY-52),(h/100)*(39),(h/100)*(-21));//hat
+    
+};
+var drawBitmojiElla = function(bitmojiX, bitmojiY, h){
+    drawHair(bitmojiX, bitmojiY, h);
+    drawHead(bitmojiX,bitmojiY, h);
+    drawFace(bitmojiX, bitmojiY, h);
+    drawExternal(bitmojiX, bitmojiY, h);
+    drawShirt(bitmojiX, bitmojiY, h);
+    drawNonBody(bitmojiX, bitmojiY, h);
+};
+
+var score = 20;
+
+var appleNum=0;
+
+var N= 11;
+
+var rowHeight = height / N;
+
+var SNAKE_MOVE_SPEED = 20; //speed that the snake moves at
+
+frameRate(N);
+
+var currentScene=1;
+
+                              ///////BUTTON CLASS//////////   
+
+var Button = function(config) {
+    this.x = config.x || 0;
+    this.y = config.y || 0;
+    this.width = config.width || 150;
+    this.height = config.height || 50;
+    this.label = config.label || "Click";
+    this.onClick = config.onClick || function() {};
+};
+
+Button.prototype.draw = function() {
+    fill(21, 166, 74);
+    rect(this.x, this.y, this.width, this.height, 5);
+    fill(17, 18, 16);
+    textSize(19);
+    textAlign(LEFT, TOP);
+    text(this.label, this.x + 10, this.y + this.height/4);
+};
+
+Button.prototype.isMouseInside = function() {
+    return mouseX > this.x &&
+           mouseX < (this.x + this.width) &&
+           mouseY > this.y &&
+           mouseY < (this.y + this.height);
+};
+
+Button.prototype.handleMouseClick = function() {
+    if (this.isMouseInside()) {
+        this.onClick();
+    }
+};
+
+var btn1 = new Button({
+    x: 113,
+    y: 139,
+    label: "START!",
+    onClick: function() {
+        currentScene=2;
+    }
+});
+
+mouseClicked = function() {
+    btn1.handleMouseClick();
+};
+
+                                  /////APPLE//////
+
+var Apple = function(x, y) {
+    this.x = x;
+    this.y = y;
+};
+
+Apple.prototype.draw = function() {
+    rectMode(CENTER);
+    fill(240, 14, 14);
+    rect(this.x, this.y, 20, 20);
+}; 
+
+var apples = [];
+
+for (var i = 0; i < 30; i++) {
+    apples.push(new Apple(round(random(0, 400)), round(random(0, 400))));
+}
+
+                                ////////SNAKE//////////
+                                
+var fullSnake = [];
+
+var Snake = function(x, y) {
+    this.x = x;
+    this.y = y;
+}; //snake constructor
+
+var snakeBody = function(){
+    var row = []; // row index of each body part
+    var col = []; // column index of each body part
+    var img = []; // index of image for each body part
+    var direction; // current direction of snake movement
+    var nextDirection; // direction in the next frame
+
+    var score; // number of apples this snake has eaten
+
+    var init = function() {
+        // start with a brand new snake
+        row = [];
+        col = [];
+        img = [];
+    };
+};
+
+Snake.prototype.draw = function() {
+    this.x = constrain(this.x, 13, 386);
+    this.y = constrain(this.y, 12, 385);
+    rectMode(CENTER);
+    fill(36, 189, 46);
+    rect(this.x, this.y, 35, 35);
+};
+
+Snake.prototype.up = function() {
+    this.y-= N;
+    
+};
+
+Snake.prototype.down = function() {
+    this.y+= N;
+};
+
+Snake.prototype.right = function() {
+    this.x+= N;
+};
+
+Snake.prototype.left = function() {
+    this.x-= N;
+};
+
+Snake.prototype.checkForApple = function(apple) {
+    if ((apple.x >= this.x - 10 && apple.x <= (this.x + 10)) &&
+        (apple.y >= this.y - 10 && apple.y <= (this.y + 10))) {
+            return true;
+        }
+};
+
+                             //////DRAW+VISUALS///////
+
+
+
+var drawGrid = function() {
+    stroke(46, 46, 46);
+    for (var i = 0; i < N; i += 1) {
+        var x = i / N * height;
+        line(x, 0, x, height);
+        line(0, x, height, x);
+    }
+};
+
+var snake = new Snake(200, 200);
+
+var firstScene= function(){
+    background(89, 102, 91);
+    textSize(66);
+    fill(57, 82, 43);
+    text("SNAKE", 80, 32);
+    fill(31, 48, 20);
+    text("SNAKE", 86, 29);
+    fill(111, 181, 58);
+    textSize(18);
+    text("Click Below to start:",106, 100);
+    textSize(18);
+    text("Collect as many as apples as you can without going out of bounds", 46, 198, 312, 294);
+    btn1.draw();
+    textSize(17);
+    fill(242, 233, 242);
+    text("Ella Glantz and Jeffrey Gutierrez", 68, 380);
+    drawBitmojiJeffrey(133,292,126);
+    drawBitmojiElla(462,562,51);
+
+};
+
+var drawApple=function(){
+    if(snake.checkForApple(apples[appleNum])){
+        apples[appleNum].y=-400;
+        score--;
+        appleNum++;
+    }
+    apples[appleNum].draw();
+};
+
+var gameScene = function() {
+        if (keyPressed) {
+        if (keyCode === UP) {
+            snake.up();
+        }
+        else if (keyCode === DOWN) {
+            snake.down();
+        }
+        else if (keyCode === RIGHT) {
+            snake.right();
+        }
+        else if (keyCode === LEFT) {
+            snake.left();
+        }
+    }
+    background(255, 255, 255);
+    apples[0].draw();
+    snake.draw();
+    drawGrid();
+    drawApple();
+    
+    for (var i = 0; i < apples.length; i++) {
+        snake.checkForApple(apples[0]);
+    }
+};
+
+var drawBackground = function(opacity) {
+    fill(36, 36, 36, opacity);
+    rect(0, 0, height, height);
+};
+
+var drawGameOverScene = function() {
+    drawBackground(150);
+    var font = createFont("monospace", 20);
+    textFont(font, 20);
+    textSize(60);
+    fill(49, 201, 26);
+    text("GAME OVER", 38, 175);
+    textSize(26);
+    text("Score: " + snake.score(), 132, 239);/*
+    if (gameOverTimer.isUp()) {
+        textSize(16);
+        text("Press any key to start over.", 66, 314);
+    }*/
+};
+
+draw = function() {
+   if(currentScene === 1){
+       firstScene();
+   }
+   else if(currentScene===2){
+       gameScene();
+   }
+};
