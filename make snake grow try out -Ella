@@ -1,0 +1,26 @@
+var num_seg = 1;  //as eat increment num_seg
+var head_x =350;
+var head_y = 350;
+var direction = 0; //0 = down, 1=left, 2= rigth, 3=up
+
+if (snake eaten) {num_seg++}
+
+var draw_snake = function ()
+{
+    var seg_x = snake_x;
+    var seg_y = snake_y;
+    rect(head_x, head_y,50,50);  //draw head
+    for (var i = 2; i<=num_seg; ++i)  //draw segments
+    {
+        if (keyIsPressed&&keyCode===DOWN)
+        {
+            rect (head_x, seg_y-50, 50, 50);
+            seg_y -=50;
+        }
+        else if (keyIsPressed&&keyCode===UP)
+        {
+            rect (head_x, seg_y + 50, 50, 50)
+            seg_x +=50;
+        }
+    }
+};
