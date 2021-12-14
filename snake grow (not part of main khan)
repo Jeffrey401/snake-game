@@ -1,0 +1,79 @@
+//way to make a new object for each part of snake that grows. still have to do up and donw arrows.
+
+var snake_segment=[
+    {
+        x:10,
+        y:10,
+        color: color(255, 0, 0),
+        xDirection:10,
+        yDirection:0,
+    },
+    {
+        x:0,
+        y:10,
+        color: color(87, 87, 89),
+        xDirection:10,
+        yDirection:0,
+    },
+    {
+        x:-10,
+        y:10,
+        color: color(192, 80, 209),
+        xDirection:10,
+        yDirection:0,
+    },
+    {
+        x:-20,
+        y:10,
+        color: color(54, 209, 54),
+        xDirection:10,
+        yDirection:0,
+    }
+];
+
+var draw_snake=function(segments){
+    for (var i=0; i<segments.length; i++){
+        fill(segments[i].color);
+        rect(segments[i].x, segments[i].y,10,10);
+    }
+};
+
+//var xDirection=10;
+//var yDirection=0;
+
+draw= function() {
+    background(230, 196, 196);
+    draw_snake(snake_segment);
+    
+    if(keyIsPressed&&keyCode===LEFT){
+        snake_segment[0].ydir=0;
+        snake_segment[0].xdir=-10;
+    }
+    if(keyIsPressed&&keyCode===RIGHT){
+        snake_segment[0].yDir=0;
+        snake_segment[0].xDir=10;
+    }
+    
+    for (var i in snake_segment){
+        //TODO: collision for apples
+        
+        snake_segment[i].x +=snake_segment[i].xDirection;
+        
+        //collision for canvas (right apple)
+        
+        if(snake_segment[i].x>=400){
+           snake_segment.xDirection=-10;
+        }
+        //collision for canvas (left apple)
+        if(snake_segment[i]<=0){
+            snake_segment[i].xDirection=10;
+        }
+        
+        //TODO: top and bottom edges
+        
+        if(i>0){
+            snake_segment[i].xDirection=snake_segment[i-1].xDirection;
+            //TODO: y direction
+        }
+    }
+};
