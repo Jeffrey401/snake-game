@@ -1,0 +1,61 @@
+var N = 10;
+
+frameRate(5);
+
+var xPos = [];
+var yPos = [];
+var x = 0;
+var y = 0;
+
+var keyStack = [];
+
+for (var i = 0; i < N; i++) {
+    xPos.push(i / N * height);
+    yPos.push(i / N * height);
+}
+
+var drawGrid = function() {
+    stroke(46, 46, 46);
+    for (var i = 0; i < N; i += 1) {
+        var x = i / N * height;
+        line(x, 0, x, height);
+        line(0, x, height, x);
+    }
+};
+
+var Snake = function(x, y) {
+    this.x = x;
+    this.y = y;
+};
+
+Snake.prototype.draw = function() {
+    this.x = constrain(this.x, -1, 360);
+    this.y = constrain(this.y, -1, 360);
+    fill(0, 0, 0);
+    rect(xPos[x], yPos[y], height/N, height/N); 
+};
+
+var snake = new Snake(xPos[x], yPos[y]);
+
+draw = function() {
+    background(255, 255, 255);
+    drawGrid();
+    snake.draw();
+    
+    keyPressed = function() {
+    if (keyPressed) {
+        if (keyCode === UP) {
+            y--;
+        }
+        else if (keyCode === DOWN) {
+            y++;
+        }
+        else if (keyCode === RIGHT) {
+            x++;
+        }
+        else if (keyCode === LEFT) {
+            x--;
+        }
+    }
+    };
+};
