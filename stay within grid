@@ -1,13 +1,19 @@
 var N = 10;
 
-frameRate(5);
+var numApples = 15;
 
+frameRate(4);
+
+//grid positions
 var xPos = [];
 var yPos = [];
+
+//snake x and y values
 var x = 0;
 var y = 0;
 
 var keyStack = [];
+var fullSnake = [];
 
 for (var i = 0; i < N; i++) {
     xPos.push(i / N * height);
@@ -23,16 +29,48 @@ var drawGrid = function() {
     }
 };
 
+            //APPLE//           
+var apples = [];
+
+var eatApple = 0;
+
+var appleX = 0;
+var appleY = 0;
+
+var Apple = function(x, y) {
+    this.x = xPos[x];
+    this.y = yPos[y];
+};
+
+Apple.prototype.draw = function() {
+    fill(240, 14, 14);
+    rect(this.x, this.y, height/N, height/N); 
+}; 
+
+for (var i = 0; i < numApples; i++) {
+    var pos = floor(random(0, N));
+    apples.push(new Apple(pos, pos));
+    appleX = pos;
+    appleY = pos;
+}
+
+            //SNAKE//
 var Snake = function(x, y) {
-    this.x = x;
-    this.y = y;
+    this.x = xPos[x];
+    this.y = yPos[y];
 };
 
 Snake.prototype.draw = function() {
-    this.x = constrain(this.x, -1, 360);
-    this.y = constrain(this.y, -1, 360);
     fill(0, 0, 0);
     rect(xPos[x], yPos[y], height/N, height/N); 
+};
+
+Snake.prototype.checkForApple = function() {
+    for (var i = 0; i < numApples; i++) {
+        if (x === apples[i].x  && y === apples[i].y) {
+            apples[i] = -400;
+        }
+    }
 };
 
 var snake = new Snake(xPos[x], yPos[y]);
@@ -41,21 +79,29 @@ draw = function() {
     background(255, 255, 255);
     drawGrid();
     snake.draw();
+    apples[0].draw();
+    textSize(18);
+    fill(31, 207, 84);
+    text("Score: ", 6, 19);
     
     keyPressed = function() {
-    if (keyPressed) {
-        if (keyCode === UP) {
-            y--;
+        if (keyPressed) {
+            if (keyCode === UP) {
+                y--;
+                keyStack.push(UP);
+            }
+            else if (keyCode === DOWN) {
+                y++;
+                keyStack.push(DOWN);
+            }
+            else if (keyCode === RIGHT) {
+                x++;
+                keyStack.push(RIGHT);
+            }
+            else if (keyCode === LEFT) {
+                x--;
+                keyStack.push(LEFT);
+            }
         }
-        else if (keyCode === DOWN) {
-            y++;
-        }
-        else if (keyCode === RIGHT) {
-            x++;
-        }
-        else if (keyCode === LEFT) {
-            x--;
-        }
-    }
     };
 };
