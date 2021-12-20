@@ -1,0 +1,456 @@
+//Global variables 
+var currentColor = color(235, 232, 181);
+var currentScene = 1;
+var drawScene2;
+
+//Ella bitmoji code
+var drawHair = function(bitmojiX, bitmojiY, h){
+    noStroke();
+    fill(111, 78, 55);
+    ellipse((h/100)*(bitmojiX+20),(h/100)*(bitmojiY),(h/100)*(90),(h/100)*(110));//hair shape
+    ellipse((h/100)*(bitmojiX-30),(h/100)*(bitmojiY),(h/100)*(90),(h/100)*(110));//hair shape
+    ellipse((h/100)*(bitmojiX-30),(h/100)*(bitmojiY+70),(h/100)*(90),(h/100)*(110));//hair shape
+    ellipse((h/100)*(bitmojiX+20),(h/100)*(bitmojiY+70),(h/100)*(90),(h/100)*(110));//hair shape
+    ellipse((h/100)*(bitmojiX-1),(h/100)*(bitmojiY-53),(h/100)*(117),(h/100)*(31));//hair shape
+
+};
+var drawHead = function(bitmojiX, bitmojiY,h){
+    noStroke();
+    fill(230, 196, 163);//neck
+    rect((h/100)*(bitmojiX-17),(h/100)*(bitmojiY+50),(h/100)*(38),(h/100)*(35));//neck
+    fill(255, 223, 201);
+    ellipse((h/100)*(bitmojiX),(h/100)*(bitmojiY),(h/100)*(90),(h/100)*(110));//head     shape
+    arc((h/100)*(bitmojiX-20), (h/100)*(bitmojiY+47), (h/100)*(70), (h/100)*(55), 0, 36);//chin shape
+    arc((h/100)*(bitmojiX-24), (h/100)*(bitmojiY+47), (h/100)*(70), (h/100)*(55),0,36);//chin shape
+    arc((h/100)*(bitmojiX-9), (h/100)*(bitmojiY+27), (h/100)*(70), (h/100)*(83), 0, 37);//chin shape
+    ellipse((h/100)*(bitmojiX+11),(h/100)*(bitmojiY+47),(h/100)*(17),(h/100)*(23));
+};
+var drawShirt = function(bitmojiX, bitmojiY,h){
+    fill(119, 133, 135);//shirt
+    rect((h/100)*(bitmojiX-70),(h/100)*(bitmojiY+83),(h/100)*(152),(h/100)*(88            ));//shirt
+    fill(252, 141, 195);
+    rect((h/100)*(bitmojiX-47),(h/100)*(bitmojiY+120),(h/100)*(4),(h/100)*(23));
+    rect((h/100)*(bitmojiX-47),(h/100)*(bitmojiY+120),(h/100)*(24),(h/100)*(4));
+    rect((h/100)*(bitmojiX-47),(h/100)*(bitmojiY+130),(h/100)*(18),(h/100)*(4));
+    rect((h/100)*(bitmojiX-47),(h/100)*(bitmojiY+142),(h/100)*(23),(h/100)*(4));//lett     er E, first initial
+    rect((h/100)*(bitmojiX+17),(h/100)*(bitmojiY+119),(h/100)*(4),(h/100)*(26));
+    rect((h/100)*(bitmojiX+18),(h/100)*(bitmojiY+119),(h/100)*(24),(h/100)*(4));
+    rect((h/100)*(bitmojiX+18),(h/100)*(bitmojiY+141),(h/100)*(24),(h/100)*(4));
+    rect((h/100)*(bitmojiX+38),(h/100)*(bitmojiY+132),(h/100)*(4),(h/100)*(13));
+    rect((h/100)*(bitmojiX+30),(h/100)*(bitmojiY+131),(h/100)*(11),(h/100)*(4));//lett     er G, last initial
+};
+var drawFace = function(bitmojiX, bitmojiY,h){
+    fill(71, 64, 46);
+    arc((h/100)*(bitmojiX-2), (h/100)*(bitmojiY-15), (h/100)*(76), (h/100)*(24), 23, 39);//left eyebrow
+    arc((h/100)*(bitmojiX-43),(h/100)*(bitmojiY-15),(h/100)*(76), (h/100)*(19), 23, 39);//left eyebrow
+    stroke(13, 4, 4);
+    fill(245, 237, 245);
+    ellipse((h/100)*(bitmojiX+18),(h/100)*(bitmojiY),(h/100)*(14),(h/100)*(10));//righ     t white part of eye
+    ellipse((h/100)*(bitmojiX-21),(h/100)*(bitmojiY-1),(h/100)*(14),(h/100)*(10           ));//left white part of eye
+    fill(80, 105, 93);
+    stroke(255, 255, 255);
+    ellipse((h/100)*(bitmojiX-20),(h/100)*(bitmojiY),(h/100)*(11),(h/100)*(6));//left     eye
+    ellipse((h/100)*(bitmojiX+18),(h/100)*(bitmojiY+1),(h/100)*(10),(h/100)*(6            ));//right eye
+    noStroke();
+    fill(3, 4, 5);
+    ellipse((h/100)*(bitmojiX-20),(h/100)*(bitmojiY),(h/100)*(3),(h/100)*(4));//right     pupil
+    ellipse((h/100)*(bitmojiX+17),(h/100)*(bitmojiY),(h/100)*(3),(h/100)*(4));//left p     upil
+    stroke(0, 0, 0);//outline
+    fill(255, 223, 201);//nose
+    bezier((h/100)*(bitmojiX-1),(h/100)*(bitmojiY),(h/100)*(bitmojiX+17),(h/100           )*(bitmojiY+32),(h/100)*(bitmojiX-1),(h/100)*(bitmojiY+26),(h/100)*(bitmojiX    -1     ),(h/100)*(bitmojiY+19));//nose
+    stroke(196, 43, 135);//lip color
+    fill(255, 255, 255);
+    arc((h/100)*(bitmojiX+1),(h/100)*(bitmojiY+30),(h/100)*(30),(h/100)*(17),0,164);//mouth
+    fill(0, 0, 0);
+    line((h/100)*(bitmojiX-15),(h/100)*(bitmojiY+30),(h/100)*(bitmojiX+14),(h/100         )*(bitmojiY+30));//upper lip
+};
+var drawExternal = function(bitmojiX, bitmojiY,h){
+    noStroke();
+    fill(255, 223, 201);
+    ellipse((h/100)*(bitmojiX-47),(h/100)*(bitmojiY+9),(h/100)*(9),(h/100)*(17            ));//left ear
+    ellipse((h/100)*(bitmojiX+46),(h/100)*(bitmojiY+9),(h/100)*(9),(h/100)*(17            ));//right ear
+    fill(230, 219, 18);
+    rect((h/100)*(bitmojiX-48),(h/100)*(bitmojiY+16),(h/100)*(2),(h/100)*(8),(h/100       )*(21));//left earring
+    rect((h/100)*(bitmojiX+46),(h/100)*(bitmojiY+16),(h/100)*(2),(h/100)*(10),(h/100      )*(21));//right earring
+    fill(211,188,141);
+    ellipse((h/100)*(bitmojiX-17),(h/100)*(bitmojiY+30),(h/100)*(2),(h/100)*(9            ));//left dimple
+    ellipse((h/100)*(bitmojiX+20),(h/100)*(bitmojiY+30),(h/100)*(2),(h/100)*(9            ));//right dimple
+};
+var drawNonBody = function(bitmojiX, bitmojiY,h){
+    noStroke();
+    fill(230, 196, 163);
+    arc((h/102)*(bitmojiX+1),(h/100)*(bitmojiY+81),(h/100)*(50),(h/100)*(27),0,170);//circle neck line
+    stroke(238, 255, 0);
+    fill(119, 133, 135);
+    arc((h/100)*(bitmojiX+2),(h/100)*(bitmojiY+85),(h/100)*(51),(h/100)*(49),0,183);//necklace
+    noStroke();
+    fill(255, 242, 0);
+    rect((h/100)*(bitmojiX),(h/100)*(bitmojiY+108),(h/100)*(3),(h/100)*(9));//mezzuzah pendant
+    fill(38, 27, 38);
+    rect((h/100)*(bitmojiX-30),(h/100)*(bitmojiY-55),(h/100)*(58),(h/100)*(7));
+    rect((h/100)*(bitmojiX-21),(h/100)*(bitmojiY-52),(h/100)*(39),(h/100)*(-21));//hat
+    
+};
+var drawEllaBitmoji = function(bitmojiX, bitmojiY, h){
+    drawHair(bitmojiX, bitmojiY, h);
+    drawHead(bitmojiX,bitmojiY, h);
+    drawFace(bitmojiX, bitmojiY, h);
+    drawExternal(bitmojiX, bitmojiY, h);
+    drawShirt(bitmojiX, bitmojiY, h);
+    drawNonBody(bitmojiX, bitmojiY, h);
+};
+
+//Jeffrey Bitmoji Code
+var drawBitmojiJeffrey= function(bodyX,bodyY,bitHeight){
+    noStroke();
+    fill(246, 198, 175); //skin color
+    ellipse(bodyX+(bitHeight/150),bodyY+(bitHeight/150),(bitHeight/150)*76,(bitHeight /150)*100); //head
+    arc(bodyX-(bitHeight/150)*35,bodyY-(bitHeight/150)*1,(bitHeight/150)*16,(bitHeight /150)*23,-270,-90); //left ear
+    arc(bodyX+(bitHeight/150)*36,bodyY-(bitHeight/150)*1,(bitHeight/150)*16,(bitHeight /150)*23,(bitHeight/150)*-90,(bitHeight/150)*90); //right ear
+    fill(51, 29, 1); //eye color
+    ellipse(bodyX-(bitHeight/150)*16,bodyY-(bitHeight/150)*9,(bitHeight/150)*7,(bitHeight/150)*7); //left eye
+    ellipse(bodyX+(bitHeight/150)*15,bodyY-(bitHeight/150)*9,(bitHeight/150)*7,(bitHeight/150)*7); //right eye
+    fill(235, 181, 184); //lip color
+    arc(bodyX+(bitHeight/150)*1,bodyY+(bitHeight/150)*29,(bitHeight/150)*28,(bitHeight/150)*12,(bitHeight/150)*0,(bitHeight/150)*360); //lips
+    stroke(0, 0, 0);
+    strokeWeight(1);
+    line(bodyX+(bitHeight/150)*13,bodyY+(bitHeight/150)*28,bodyX-(bitHeight/150)*11,bodyY+(bitHeight/150)*28); //lip line
+    fill(246, 198, 175); //skin color
+    bezier(bodyX+(bitHeight/150),bodyY-(bitHeight/150)*1,bodyX+(bitHeight/150)*25,bodyY+(bitHeight/150)*21,bodyX-(bitHeight/150)*10,bodyY+(bitHeight/150)*17,bodyX+(bitHeight/150),bodyY+(bitHeight/150)*16); //nose
+        fill(11, 41, 161); //hat color
+    arc(bodyX+(bitHeight/150)*1,bodyY-(bitHeight/150)*17,(bitHeight/150)*71,(bitHeight/150)*72,180,360); //hat
+    strokeWeight(4);
+    line(bodyX-(bitHeight/150)*30,bodyY+(bitHeight/150)*33,bodyX-(bitHeight/150)*33,bodyY+(bitHeight/150)*44); //braid
+    line(bodyX+(bitHeight/150)*31,bodyY+(bitHeight/150)*32,bodyX+(bitHeight/150)*35,bodyY+(bitHeight/150)*43); //braid
+    noStroke();
+    fill(0, 0, 0); //shirt color
+    quad(bodyX-(bitHeight/150)*51,bodyY+(bitHeight/150)*95,bodyX+(bitHeight/150)*61,bodyY+(bitHeight/150)*95,bodyX+(bitHeight/150)*33,bodyY+(bitHeight/150)*47,bodyX-(bitHeight/150)*29,bodyY+(bitHeight/150)*47); //shirt
+    strokeWeight((bitHeight/150)*4);
+    fill(255, 255, 255); // initial color
+    textSize((bitHeight/150)*30); //initial size
+    text('J G',bodyX-(bitHeight/150)*22,bodyY+(bitHeight/150)*53); //initial
+};
+
+//Feedback responses when clicked on feedback button
+var feedback = [
+    "Ella and Jeffrey think you're doing a Great job",
+    "Ella and Jeffrey think you're an artist!",
+    "Keep up the fantastic Work!",
+    "Ella and Jeffrey think it looks amazing",
+];
+
+//idea reponses when clcike don idea button
+var ideas = [
+    "House",
+    "cat",
+    "flower",
+    "bumble bee",
+    "castle",
+    "food",
+    "surfboard",
+    "tree",
+    "friends",
+    "balloon",
+    "Planets",
+];
+
+//Khan button class
+var Button = function(config) {
+    this.x = config.x || 0;
+    this.y = config.y || 0;
+    this.width = config.width || 150;
+    this.height = config.height || 50;
+    this.label = config.label || "Click";
+    this.onClick = config.onClick || function() {};
+};
+
+Button.prototype.draw = function() {
+    fill(210, 180, 217);
+    rect(this.x, this.y, this.width, this.height, 5);
+    fill(0, 0, 0);
+    textSize(19);
+    textAlign(LEFT, TOP);
+    text(this.label, this.x+10, this.y+this.height/4);
+};
+
+Button.prototype.isMouseInside = function() {
+    return mouseX > this.x &&
+           mouseX < (this.x + this.width) &&
+           mouseY > this.y &&
+           mouseY < (this.y + this.height);
+};
+
+Button.prototype.handleMouseClick = function() {
+    if (this.isMouseInside()) {
+        this.onClick();
+    }
+};
+
+//objects for buttons (hard code) and using khan button class ot make new buttons
+var button = new Button({
+    x: 125,
+    y: 300,
+    width: 150,
+    label: "Start Game",
+    height: 60,
+    onClick: function() {
+        currentScene = 2;
+        drawScene2();
+    }
+});
+
+var pinkButton= new Button({
+    x: 300,
+    y: 10,
+    height: 40,
+    width: 80,
+    label: "Pink",
+    onClick: function(){
+        currentColor = color(255, 0, 225);
+    }
+});
+
+var blueButton= new Button({
+    x: 300,
+    y: 70,
+    width: 80,
+    height: 40,
+    label: "Blue",
+    onClick: function(){
+        currentColor = color(20, 171, 209);
+    }
+});
+var redButton= new Button({
+    x: 300,
+    y: 120,
+    width: 80,
+    height: 40,
+    Label: "Red",
+    onClick: function(){
+        currentColor = color(242, 8, 8);
+    }
+});
+var yellowButton= new Button({
+    x: 300,
+    y: 180,
+    width: 80,
+    height: 40,
+    Label: "Red",
+    onClick: function(){
+        currentColor = color(240, 225, 9);
+    }
+});
+var greenButton= new Button({
+    x: 300,
+    y: 240,
+    width: 80,
+    height: 40,
+    Label: "Green",
+    onClick: function(){
+        currentColor = color(17, 240, 9);
+    }
+});
+var eraseButton= new Button({
+    x: 300,
+    y: 300,
+    width: 80,
+    height: 40,
+    Label: "Erase",
+    onClick: function(){
+        currentColor = color(255, 255, 255);
+    }
+});
+var ideasButton = new Button({
+    x: 170,
+    y: 290,
+    width: 70,
+    height: 30,
+    onClick: function() {
+        fill(99, 106, 171);
+        textSize(15);
+        text(ideas[round(random(0, ideas.length-1))], 180, 320);
+    }
+});
+var feedbackButton = new Button({
+    x: 10,
+    y: 10,
+    width: 100,
+    height: 40,
+    onClick: function() {
+        fill(255, 0, 0);
+        textSize(15);
+        text(feedback[round(random(0, feedback.length-1))], 1, 270);
+    }
+});
+var clearButton= new Button({
+    x: 300,
+    y: 360,
+    width: 80,
+    height: 40,
+    Label: "Re-start",
+    onClick: function(){
+        drawScene2();
+    }
+});
+
+var startButton = function (btn){
+ fill(182, 237, 223);
+ rect(btn.x, btn.y, btn.width, btn.height);
+ fill(3, 3, 3);
+ textSize(43);
+ textAlign(LEFT, TOP);
+ text("Start!", btn.x+15, btn.y + btn.height/5);
+};
+
+//start screen display
+var firstScreenDesign = function(){
+    background(255,250,205);
+    fill(81, 81, 163);
+    textSize(30);
+    text("Draw a  Picture!", 78, 30);
+    // startButton(button);
+    button.draw();
+    drawBitmojiJeffrey(245, 214, 116);
+    drawEllaBitmoji(283, 400, 50);
+    textSize(15);
+    text("In order to begin, click the Start Button. Create any idea that you imagine! Use as many or as little colors as you want. If you want a new idea or would like to draw a new picture, click restart.",30, 
+    65, 332,200);
+    text("By Ella Glantz and Jeffrey Gutierrez", 70, 370);
+};
+
+//compacted initial screen display into a function in roder to have compact code
+var firstScene= function(){
+    firstScreenDesign();
+};
+
+//the design of the buttons
+var drawPinkBnt=function(pinkBtn){//pink button
+    fill(182, 237, 223);
+    rect(pinkBtn.x, pinkBtn.y, pinkBtn.width, pinkBtn.height, 10);
+    fill(3, 3, 3);
+    textSize(20);
+    textAlign(LEFT, TOP);
+    text("Pink!", pinkBtn.x+15, pinkBtn.y + pinkBtn.height/5);
+};
+var drawBlueBnt=function(blueBtn){
+    fill(182, 237, 223);
+    rect(blueBtn.x, blueBtn.y, blueBtn.width, blueBtn.height, 10);
+    fill(3, 3, 3);
+    textSize(20);
+    textAlign(LEFT, TOP);
+    text("Blue!", blueBtn.x+15, blueBtn.y + blueBtn.height/5);
+};
+var drawRedBnt=function(redBtn){
+    fill(182, 237, 223);
+    rect(redBtn.x, redBtn.y, redBtn.width, redBtn.height, 10);
+    fill(3, 3, 3);
+    textSize(20);
+    textAlign(LEFT, TOP);
+    text("Red!", redBtn.x+15, redBtn.y + redBtn.height/5);
+};
+var drawYellowBnt=function(yellowBtn){
+    fill(182, 237, 223);
+    rect(yellowBtn.x, yellowBtn.y, yellowBtn.width, yellowBtn.height, 10);
+    fill(3, 3, 3);
+    textSize(15);
+    textAlign(LEFT, TOP);
+    text("Yellow!", yellowBtn.x+15, yellowBtn.y + yellowBtn.height/5);
+};
+var drawGreenBnt=function(greenBtn){
+    fill(182, 237, 223);
+    rect(greenBtn.x, greenBtn.y, greenBtn.width, greenBtn.height, 10);
+    fill(3, 3, 3);
+    textSize(15);
+    textAlign(LEFT, TOP);
+    text("Green!", greenBtn.x+15, greenBtn.y + greenBtn.height/5);
+};
+var drawEraseBnt=function(eraseBtn){
+    fill(182, 237, 223);
+    rect(eraseBtn.x, eraseBtn.y, eraseBtn.width, eraseBtn.height, 10);
+    fill(3, 3, 3);
+    textSize(15);
+    textAlign(LEFT, TOP);
+    text("Erase!", eraseBtn.x+15, eraseBtn.y + eraseBtn.height/5);
+};
+var drawFeedbackBnt=function(feedbackBtn){
+    fill(182, 237, 223);
+    rect(feedbackBtn.x, feedbackBtn.y, feedbackBtn.width, feedbackBtn.height, 10);
+    fill(3, 3, 3);
+    textSize(15);
+    textAlign(LEFT, TOP);
+    text("Feedback", feedbackBtn.x+15, feedbackBtn.y + feedbackBtn.height/5);
+};
+var drawIdeasBnt=function(ideasBtn){
+    fill(182, 237, 223);
+    rect(ideasBtn.x, ideasBtn.y, ideasBtn.width, ideasBtn.height, 10);
+    fill(3, 3, 3);
+    textSize(15);
+    textAlign(LEFT, TOP);
+    text("Ideas", ideasBtn.x+15, ideasBtn.y + ideasBtn.height/5);
+};
+var clearBnt=function(clearBtn){
+    fill(182, 237, 223);
+    rect(clearBtn.x, clearBtn.y, clearBtn.width, clearBtn.height, 10);
+    fill(3, 3, 3);
+    textSize(15);
+    textAlign(LEFT, TOP);
+    text("Re-start!", clearBtn.x+15, clearBtn.y + clearBtn.height/5);
+};
+
+//display for scene 2 includes button
+var drawScene2= function(){
+    currentScene = 2;
+    background(235, 232, 181);
+    textSize(30);
+    fill(135, 19, 135);
+    text("Draw!", 120, 20);
+    textSize(400);
+    fill(255, 255, 255);
+    rect(9,58,260,203);//white rect color appears in
+    drawPinkBnt(pinkButton);
+    drawBlueBnt(blueButton);
+    drawRedBnt(redButton);
+    drawYellowBnt(yellowButton);
+    drawGreenBnt(greenButton);
+    drawEraseBnt(eraseButton);
+    drawFeedbackBnt(feedbackButton);
+    drawIdeasBnt(ideasButton);
+    clearBnt(clearButton);
+    noStroke();
+    drawEllaBitmoji(120,800,40);
+    drawBitmojiJeffrey(128, 323, 90);
+};
+
+//update currentColor variable to color pressed with mouseX and mouseY
+mouseClicked = function() {//start button
+    if (currentScene === 1) {
+        button.handleMouseClick();
+        
+    } else if ( currentScene === 2) {
+        // changing color handle mouse click    
+        feedbackButton.handleMouseClick();
+        ideasButton.handleMouseClick();
+        pinkButton.handleMouseClick();
+        blueButton.handleMouseClick();
+        redButton.handleMouseClick();
+        yellowButton.handleMouseClick();
+        greenButton.handleMouseClick();
+        eraseButton.handleMouseClick();
+        clearButton.handleMouseClick();
+    }
+};
+//set fill to currentColor, draw ellipse at mouse pos
+draw = function() {
+     if(currentScene === 1){
+         firstScreenDesign();
+     }
+     else 
+     {
+         //code to only have the color appear inside the white rect
+         if (mouseIsPressed && mouseX>9 && mouseX<269 && mouseY>58 && mouseY<261){
+         fill(currentColor);
+         ellipse(mouseX, mouseY, 8, 10);
+         }
+     }
+};
+firstScene();//call first scene design
